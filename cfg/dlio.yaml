@@ -27,10 +27,15 @@
                                  0.,  0.,  1. ]
     imu/intrinsics/gyro/bias: [ 0.0, 0.0, 0.0 ]
 
-    extrinsics/baselink2imu/t: [ 0.006253, -0.011775, 0.007645 ] 
-    extrinsics/baselink2imu/R: [ 1.,  0.,  0.,
-                                 0.,  1.,  0.,
-                                 0.,  0.,  1. ]
+    # Extrinsics: base_link to vectornav IMU
+    # These values should be measured/calibrated for your specific setup
+    extrinsics/baselink2imu/t: [ 0.0, 0.0, 0.0 ] 
+    extrinsics/baselink2imu/R: [ 0.,  1.,  0.,
+                                 1.,  0.,  0.,
+                                 0.,  0., -1. ]
+    
+    # Extrinsics: base_link to velodyne LiDAR
+    # Based on static transform in sensors.launch: base_link to velodyne (0,0,0,0,0,0)
     extrinsics/baselink2lidar/t: [ 0.,  0.,  0. ]
     extrinsics/baselink2lidar/R: [ 1.,  0.,  0.,
                                    0.,  1.,  0.,

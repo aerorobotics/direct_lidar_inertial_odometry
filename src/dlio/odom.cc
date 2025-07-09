@@ -49,6 +49,7 @@ dlio::OdomNode::OdomNode() : Node("dlio_odom_node") {
   this->kf_pose_pub  = this->create_publisher<geometry_msgs::msg::PoseArray>("kf_pose", 1);
   this->kf_cloud_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("kf_cloud", 1);
   this->deskewed_pub = this->create_publisher<sensor_msgs::msg::PointCloud2>("deskewed", 1);
+  this->transformed_imu_pub = this->create_publisher<sensor_msgs::msg::Imu>("transformed_imu", 10);
 
   this->br = std::make_shared<tf2_ros::TransformBroadcaster>(*this);
 
@@ -861,6 +862,10 @@ void dlio::OdomNode::callbackImu(const sensor_msgs::msg::Imu::SharedPtr imu_raw)
   this->first_imu_received = true;
 
   sensor_msgs::msg::Imu::SharedPtr imu = this->transformImu( imu_raw );
+  
+  // Publish the transformed IMU data
+  this->transformed_imu_pub->publish(*imu);
+  
   this->imu_stamp = imu->header.stamp;
   double imu_stamp_secs = rclcpp::Time(imu->header.stamp).seconds();
 

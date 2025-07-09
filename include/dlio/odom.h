@@ -122,6 +122,7 @@ private:
   rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr kf_pose_pub;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr kf_cloud_pub;
   rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr deskewed_pub;
+  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr transformed_imu_pub;
 
   // TF
   std::shared_ptr<tf2_ros::TransformBroadcaster> br;

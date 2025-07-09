@@ -20,8 +20,10 @@ def generate_launch_description():
 
     # Set default arguments
     rviz = LaunchConfiguration('rviz', default='false')
-    pointcloud_topic = LaunchConfiguration('pointcloud_topic', default='points_raw')
-    imu_topic = LaunchConfiguration('imu_topic', default='imu_raw')
+    pointcloud_topic = LaunchConfiguration('pointcloud_topic', default='velodyne_points')
+    # imu_topic = LaunchConfiguration('imu_topic', default='vectornav/imu')
+    imu_topic = LaunchConfiguration('imu_topic', default='vectornav/compensated_imu')
+
 
     # Define arguments
     declare_rviz_arg = DeclareLaunchArgument(
@@ -59,6 +61,7 @@ def generate_launch_description():
             ('kf_pose', 'dlio/odom_node/keyframes'),
             ('kf_cloud', 'dlio/odom_node/pointcloud/keyframe'),
             ('deskewed', 'dlio/odom_node/pointcloud/deskewed'),
+            ('transformed_imu', 'dlio/odom_node/transformed_imu'),
         ],
     )
 

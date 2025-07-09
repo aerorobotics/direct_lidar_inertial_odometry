@@ -12,17 +12,19 @@
 
 /**:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     frames/odom: odom
     frames/baselink: base_link
-    frames/lidar: lidar
-    frames/imu: imu
+    frames/lidar: velodyne
+    frames/imu: vectornav
 
     map/waitUntilMove: true
     map/dense/filtered: false
     map/sparse/leafSize: 0.25
 
-    odom/gravity: 9.80665
+    # odom/gravity: 9.80665
+    odom/gravity: 0.
+
     odom/computeTimeOffset: true
 
     odom/imu/approximateGravity: false
@@ -51,7 +53,10 @@
     odom/geo/Kp: 4.5
     odom/geo/Kv: 11.25
     odom/geo/Kq: 4.0
+    # odom/geo/Kab: 0.0  # Disable accelerometer bias updates
+    # odom/geo/Kgb: 0.0  # Disable gyroscope bias updates
     odom/geo/Kab: 2.25
     odom/geo/Kgb: 1.0
     odom/geo/abias_max: 5.0
     odom/geo/gbias_max: 0.5
+ 
