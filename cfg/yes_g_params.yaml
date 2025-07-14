@@ -22,14 +22,16 @@
     map/dense/filtered: false
     map/sparse/leafSize: 0.25
 
-    # odom/gravity: 9.80665
-    odom/gravity: 0.
 
     odom/computeTimeOffset: true
 
-    odom/imu/approximateGravity: false
+    # odom/gravity: -9.80665
+    odom/gravity: -9.67
+
+    odom/imu/approximateGravity: true
     odom/imu/calibration/gyro: true
     odom/imu/calibration/accel: true
+
     odom/imu/calibration/time: 3.0
     odom/imu/bufferSize: 5000
 
@@ -53,8 +55,6 @@
     odom/geo/Kp: 4.5
     odom/geo/Kv: 11.25
     odom/geo/Kq: 4.0
-    # odom/geo/Kab: 0.0  # Disable accelerometer bias updates
-    # odom/geo/Kgb: 0.0  # Disable gyroscope bias updates
     odom/geo/Kab: 2.25
     odom/geo/Kgb: 1.0
     odom/geo/abias_max: 5.0

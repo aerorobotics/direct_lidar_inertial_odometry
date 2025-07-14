@@ -30,7 +30,7 @@
     # Extrinsics: base_link to vectornav IMU
     # These values should be measured/calibrated for your specific setup
     extrinsics/baselink2imu/t: [ 0.0, 0.0, 0.0 ] 
-    extrinsics/baselink2imu/R: [ 0.,  1.,  0.,
+    extrinsics/baselink2imu/R: [ 0.,  -1.,  0.,
                                  1.,  0.,  0.,
                                  0.,  0., -1. ]
     
