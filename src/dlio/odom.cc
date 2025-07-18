@@ -708,7 +708,7 @@ void dlio::OdomNode::deskewPointcloud() {
   // update prior to be the estimated pose at the median time of the scan (corresponds to this->scan_stamp)
   this->T_prior = frames[median_pt_index];
 
-#pragma omp parallel for num_threads(this->num_threads_)
+  #pragma omp parallel for num_threads(this->num_threads_)
   for (int i = 0; i < timestamps.size(); i++) {
 
     Eigen::Matrix4f T = frames[i] * this->extrinsics.baselink2lidar_T;
