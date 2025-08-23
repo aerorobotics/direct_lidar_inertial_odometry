@@ -12,6 +12,8 @@
 
 #include "dlio/map.h"
 #include "dlio/utils.h"
+#include <experimental/filesystem>
+#include <filesystem>
 
 dlio::MapNode::MapNode(): Node("dlio_map_node") {
 
@@ -81,8 +83,8 @@ void dlio::MapNode::savePCD(std::shared_ptr<direct_lidar_inertial_odometry::srv:
   float leaf_size = req->leaf_size;
   std::string p = req->save_path;
 
-  std::cout << std::setprecision(2) << "Saving map to " << p + "/dlio_map.pcd"
-    << " with leaf size " << to_string_with_precision(leaf_size, 2) << "... "; std::cout.flush();
+  std::cout << "\033[31m" << std::setprecision(2) << "Saving map to " << p + "/dlio_map.pcd"
+    << " with leaf size " << to_string_with_precision(leaf_size, 2) << "... \033[0m"; std::cout.flush();
 
   // voxelize map
   pcl::VoxelGrid<PointType> vg;
@@ -91,6 +93,7 @@ void dlio::MapNode::savePCD(std::shared_ptr<direct_lidar_inertial_odometry::srv:
   vg.filter(*m);
 
   // save map
+  std::filesystem::create_directories(p);
   int ret = pcl::io::savePCDFileBinary(p + "/dlio_map.pcd", *m);
   res->success = ret == 0;
 
